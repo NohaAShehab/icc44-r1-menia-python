@@ -223,8 +223,50 @@ print(count)"""
 """ ----> check this """
 
 
+# class Employee:
+#     count = 0  # class variable --> represent shared property related to the class not the instance
+#
+#     def __init__(self, name='', id=1, salary=1):
+#         """ instance variables """
+#         self.name = name
+#         self.id = id
+#         self.salary = salary
+#         Employee.count += 1
+#
+#     def printEmployee(self):
+#         print(f"My name is {self.name}")
+#
+#     # class method is considered as object factory
+#     @classmethod  #
+#     def create_default_object(cls):
+#         return cls('test', 1, 10000)
+#
+#     @staticmethod
+#     def calNetSal(salary):
+#         return salary * 0.8
+#
+#
+#
+# emp1 = Employee('ahmed', 10, 10000)
+#
+# "how to use static methods ? "
+# print(Employee.calNetSal(emp1.salary))
+# print(emp1.calNetSal(1000000))
+# # def calNetSal(salary):
+# #     return salary * 0.8
+#
+#
+# # print(calNetSal(emp1.salary))
+# #
+# # print(calNetSal(200000))
+
+
+
+""" --------------"""
+
 class Employee:
     count = 0  # class variable --> represent shared property related to the class not the instance
+    instances = []
 
     def __init__(self, name='', id=1, salary=1):
         """ instance variables """
@@ -232,6 +274,7 @@ class Employee:
         self.id = id
         self.salary = salary
         Employee.count += 1
+        Employee.instances.append(self.__dict__)
 
     def printEmployee(self):
         print(f"My name is {self.name}")
@@ -247,15 +290,19 @@ class Employee:
 
 
 
-emp1 = Employee('ahmed', 10, 10000)
-
-"how to use static methods ? "
-print(Employee.calNetSal(emp1.salary))
-print(emp1.calNetSal(1000000))
-# def calNetSal(salary):
-#     return salary * 0.8
-
-
-# print(calNetSal(emp1.salary))
+emp1 = Employee('jjj', 10, 10000)
+emp2 = Employee("ddd", 100, 100000)
 #
-# print(calNetSal(200000))
+# for obj in Employee.instances:
+#     print(f"{obj.name}, {obj.id}")
+
+# you to the save data in the object -->
+
+
+"""magic property in python __dict__ """
+
+print(emp1.__dict__)
+
+
+for obj in Employee.instances:
+    print(f"{obj['name']}, {obj['id']}")
