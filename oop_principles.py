@@ -13,6 +13,8 @@
         class methods a, b,c -> without implementation
 
     encapsulation:
+        object
+        property decorator
 
 
 
